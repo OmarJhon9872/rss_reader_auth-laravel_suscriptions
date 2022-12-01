@@ -1,0 +1,279 @@
+<rss version="2.0">
+  <channel>
+    <title>Latest Results</title>
+    <description>The latest content available from Springer</description>
+    <link>http://link.springer.com</link>
+    <item>
+      <title>Closed-loop deep neural network optimal control algorithm and error analysis for powered landing under uncertainties</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Real-time guidance is critical for the vertical recovery of rockets. However, traditional sequential convex optimization algorithms suffer from shortcomings in terms of their poor real-time performance. This work focuses on applying the deep learning-based closed-loop guidance algorithm and error propagation analysis for powered landing, thereby significantly improving the real-time performance. First, a controller consisting of two deep neural networks is constructed to map the thrust direction and magnitude of the rocket according to the state variables. Thereafter, the analytical transition relationships between different uncertainty sources and the state propagation error in a single guidance period are analyzed by adopting linear covariance analysis. Finally, the accuracy of the proposed methods is verified via a comparison with the indirect method and Monte Carlo simulations. Compared with the traditional sequential convex optimization algorithm, our method reduces the computation time from 75 ms to less than 1 ms. Therefore, it shows potential for online applications.
+      &lt;span class=&quot;a-plus-plus figure id-fig1 float-no category-standard&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/42064_2022_153_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;&lt;/p&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s42064-022-0153-1</link>
+      <pubDate>2023-06-01</pubDate>
+      <guid>10.1007/s42064-022-0153-1</guid>
+    </item>
+    <item>
+      <title>Feasibility analysis of angles-only navigation algorithm with multisensor data fusion for spacecraft noncooperative rendezvous</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Relative navigation is crucial for spacecraft noncooperative rendezvous, and angles-only navigation using visible and infrared cameras provides a feasible solution. Herein, an angles-only navigation algorithm with multisensor data fusion is proposed to derive the relative motion states between two noncooperative spacecraft. First, the design model of the proposed algorithm is introduced, including the derivation of the state propagation and measurement equations. Subsequently, models for the sensor and actuator are introduced, and the effects of various factors on the sensors and actuators are considered. The square-root unscented Kalman filter is used to design the angles-only navigation filtering scheme. Additionally, the Clohessy—Wiltshire terminal guidance algorithm is introduced to obtain the theoretical relative motion trajectories during the rendezvous operations of two noncooperative spacecraft. Finally, the effectiveness of the proposed angles-only navigation algorithm is verified using a semi-physical simulation platform. The results prove that an optical navigation camera combined with average accelerometers and occasional orbital maneuvers is feasible for spacecraft noncooperative rendezvous using angles-only navigation.
+      &lt;span class=&quot;a-plus-plus figure id-fig1 float-no category-standard&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/42064_2022_148_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;&lt;/p&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s42064-022-0148-y</link>
+      <pubDate>2023-06-01</pubDate>
+      <guid>10.1007/s42064-022-0148-y</guid>
+    </item>
+    <item>
+      <title>Computational Visual Media</title>
+      <description></description>
+      <link>http://link.springer.com/41095</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>41095</guid>
+    </item>
+    <item>
+      <title>Full-duplex strategy for video object segmentation</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Previous video object segmentation approaches mainly focus on simplex solutions linking appearance and motion, limiting effective feature collaboration between these two cues. In this work, we study a novel and efficient full-duplex strategy network (&lt;em class=&quot;a-plus-plus&quot;&gt;FSNet&lt;/em&gt;) to address this issue, by considering a better mutual restraint scheme linking motion and appearance allowing exploitation of cross-modal features from the fusion and decoding stage. Specifically, we introduce a relational cross-attention module (RCAM) to achieve bidirectional message propagation across embedding sub-spaces. To improve the model’s robustness and update inconsistent features from the spatiotemporal embeddings, we adopt a bidirectional purification module after the RCAM. Extensive experiments on five popular benchmarks show that our &lt;em class=&quot;a-plus-plus&quot;&gt;FSNet&lt;/em&gt; is robust to various challenging scenarios (e.g., motion blur and occlusion), and compares well to leading methods both for video object segmentation and video salient object detection. The project is publicly available at &lt;a href=&quot;https://github.com/GewelsJI/FSNet&quot; class=&quot;a-plus-plus&quot;&gt;https://github.com/GewelsJI/FSNet&lt;/a&gt;.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2021_262_Fig1_HTML.png&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-021-0262-4</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-021-0262-4</guid>
+    </item>
+    <item>
+      <title>A survey of urban visual analytics: Advances and future directions</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Developing effective visual analytics systems demands care in characterization of domain problems and integration of visualization techniques and computational models. Urban visual analytics has already achieved remarkable success in tackling urban problems and providing fundamental services for smart cities. To promote further academic research and assist the development of industrial urban analytics systems, we comprehensively review urban visual analytics studies from four perspectives. In particular, we identify 8 urban domains and 22 types of popular visualization, analyze 7 types of computational method, and categorize existing systems into 4 types based on their integration of visualization techniques and computational models. We conclude with potential research directions and opportunities.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2022_275_Fig1_HTML.png&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-022-0275-7</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-022-0275-7</guid>
+    </item>
+    <item>
+      <title>Joint specular highlight detection and removal in single images via Unet-Transformer</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Specular highlight detection and removal is a fundamental problem in computer vision and image processing. In this paper, we present an efficient end-to-end deep learning model for automatically detecting and removing specular highlights in a single image. In particular, an encoder—decoder network is utilized to detect specular highlights, and then a novel Unet-Transformer network performs highlight removal; we append transformer modules instead of feature maps in the Unet architecture. We also introduce a highlight detection module as a mask to guide the removal task. Thus, these two networks can be jointly trained in an effective manner. Thanks to the hierarchical and global properties of the transformer mechanism, our framework is able to establish relationships between continuous self-attention layers, making it possible to directly model the mapping between the diffuse area and the specular highlight area, and reduce indeterminacy within areas containing strong specular highlight reflection. Experiments on public benchmark and real-world images demonstrate that our approach outperforms state-of-the-art methods for both highlight detection and removal tasks.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2022_273_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-022-0273-9</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-022-0273-9</guid>
+    </item>
+    <item>
+      <title>Facial optical flow estimation via neural non-rigid registration</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Optical flow estimation in human facial video, which provides 2D correspondences between adjacent frames, is a fundamental pre-processing step for many applications, like facial expression capture and recognition. However, it is quite challenging as human facial images contain large areas of similar textures, rich expressions, and large rotations. These characteristics also result in the scarcity of large, annotated real-world datasets. We propose a robust and accurate method to learn facial optical flow in a self-supervised manner. Specifically, we utilize various shape priors, including face depth, landmarks, and parsing, to guide the self-supervised learning task via a differentiable nonrigid registration framework. Extensive experiments demonstrate that our method achieves remarkable improvements for facial optical flow estimation in the presence of significant expressions and large rotations.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2021_267_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-021-0267-z</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-021-0267-z</guid>
+    </item>
+    <item>
+      <title>Robust template feature matching method using motion-constrained DCF designed for visual navigation in asteroid landing</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;A robust and efficient feature matching method is necessary for visual navigation in asteroid-landing missions. Based on the visual navigation framework and motion characteristics of asteroids, a robust and efficient template feature matching method is proposed to adapt to feature distortion and scale change cases for visual navigation of asteroids. The proposed method is primarily based on a motion-constrained discriminative correlation filter (DCF). The prior information provided by the motion constraints between sequence images is used to provide a predicted search region for template feature matching. Additionally, some specific template feature samples are generated using the motion constraints for correlation filter learning, which is beneficial for training a scale and feature distortion adaptive correlation filter for accurate feature matching. Moreover, average peak-to-correlation energy (APCE) and jointly consistent measurements (JCMs) were used to eliminate false matching. Images captured by the Touch And Go Camera System (TAGCAMS) of the Bennu asteroid were used to evaluate the performance of the proposed method. In particular, both the robustness and accuracy of region matching and template center matching are evaluated. The qualitative and quantitative results illustrate the advancement of the proposed method in adapting to feature distortions and large-scale changes during spacecraft landing.
+      &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/42064_2022_146_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;&lt;/p&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s42064-022-0146-0</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s42064-022-0146-0</guid>
+    </item>
+    <item>
+      <title>Imposing temporal consistency on deep monocular body shape and pose estimation</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Accurate and temporally consistent modeling of human bodies is essential for a wide range of applications, including character animation, understanding human social behavior, and AR/VR interfaces. Capturing human motion accurately from a monocular image sequence remains challenging; modeling quality is strongly influenced by temporal consistency of the captured body motion. Our work presents an elegant solution to integrating temporal constraints during fitting. This increases both temporal consistency and robustness during optimization. In detail, we derive parameters of a sequence of body models, representing shape and motion of a person. We optimize these parameters over the complete image sequence, fitting a single consistent body shape while imposing temporal consistency on the body motion, assuming body joint trajectories to be linear over short time. Our approach enables the derivation of realistic 3D body models from image sequences, including jaw pose, facial expression, and articulated hands. Our experiments show that our approach accurately estimates body shape and motion, even for challenging movements and poses. Further, we apply it to the particular application of sign language analysis, where accurate and temporally consistent motion modelling is essential, and show that the approach is well-suited to this kind of application.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2022_272_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-022-0272-x</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-022-0272-x</guid>
+    </item>
+    <item>
+      <title>Point cloud completion via structured feature maps using a feedback network</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;In this paper, we tackle the challenging problem of point cloud completion from the perspective of feature learning. Our key observation is that to recover the underlying structures as well as surface details, given partial input, a fundamental component is a good feature representation that can capture both global structure and local geometric details. We accordingly first propose FSNet, a feature structuring module that can adaptively aggregate point-wise features into a 2D structured feature map by learning multiple latent patterns from local regions. We then integrate FSNet into a coarse-to-fine pipeline for point cloud completion. Specifically, a 2D convolutional neural network is adopted to decode feature maps from FSNet into a coarse and complete point cloud. Next, a point cloud upsampling network is used to generate a dense point cloud from the partial input and the coarse intermediate output. To efficiently exploit local structures and enhance point distribution uniformity, we propose IFNet, a point upsampling module with a self-correction mechanism that can progressively refine details of the generated dense point cloud. We have conducted qualitative and quantitative experiments on ShapeNet, MVP, and KITTI datasets, which demonstrate that our method outperforms state-of-the-art point cloud completion approaches.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2022_276_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-022-0276-6</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-022-0276-6</guid>
+    </item>
+    <item>
+      <title>On-board modeling of gravity fields of elongated asteroids using Hopfield neural networks</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;To rapidly model the gravity field near elongated asteroids, an intelligent inversion method using Hopfield neural networks (HNNs) is proposed to estimate on-orbit simplified model parameters. First, based on a rotating mass dipole model, the gravitational field of asteroids is characterized using a few parameters. To solve all the parameters of this simplified model, a stepped parameter estimation model is constructed based on different gravity field models. Second, to overcome linearization difficulties caused by the coupling of the parameters to be estimated and the system state, a dynamic parameter linearization technique is proposed such that all terms except the parameter terms are known or available. Moreover, the Lyapunov function of the HNNs is matched to the problem of minimizing parameter estimation errors. Equilibrium values of the Lyapunov function are used as estimated values. The proposed method is applied to natural elongated asteroids 216 Kleopatra, 951 Gaspra, and 433 Eros. Simulation results indicate that this method can estimate the simplified model parameters rapidly, and that the estimated simplified model provides a good approximation of the gravity field of elongated asteroids.
+      &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/42064_2022_151_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;&lt;/p&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s42064-022-0151-3</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s42064-022-0151-3</guid>
+    </item>
+    <item>
+      <title>Focusing on your subject: Deep subject-aware image composition recommendation networks</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Photo composition is one of the most important factors in the aesthetics of photographs. As a popular application, composition recommendation for a photo focusing on a specific subject has been ignored by recent deep-learning-based composition recommendation approaches. In this paper, we propose a subject-aware image composition recommendation method, SAC-Net, which takes an RGB image and a binary subject window mask as input, and returns good compositions as crops containing the subject. Our model first determines candidate scores for all possible coarse cropping windows. The crops with high candidate scores are selected and further refined by regressing their corner points to generate the output recommended cropping windows. The final scores of the refined crops are predicted by a final score regression module. Unlike existing methods that need to preset several cropping windows, our network is able to automatically regress cropping windows with arbitrary aspect ratios and sizes. We propose novel stability losses for maximizing smoothness when changing cropping windows along with view changes. Experimental results show that our method outperforms state-of-the-art methods not only on the subject-aware image composition recommendation task, but also for general purpose composition recommendation. We also have designed a multistage labeling scheme so that a large amount of ranked pairs can be produced economically. We use this scheme to propose the first subject-aware composition dataset SACD, which contains 2777 images, and more than 5 million composition ranked pairs. The SACD dataset is publicly available at &lt;a href=&quot;https://cg.cs.tsinghua.edu.cn/SACD/&quot; class=&quot;a-plus-plus&quot;&gt;https://cg.cs.tsinghua.edu.cn/SACD/&lt;/a&gt;.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2021_263_Fig1_HTML.png&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-021-0263-3</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-021-0263-3</guid>
+    </item>
+    <item>
+      <title>A two-step surface-based 3D deep learning pipeline for segmentation of intracranial aneurysms</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;The exact shape of intracranial aneurysms is critical in medical diagnosis and surgical planning. While voxel-based deep learning frameworks have been proposed for this segmentation task, their performance remains limited. In this study, we offer a two-step surface-based deep learning pipeline that achieves significantly better results. Our proposed model takes a surface model of an entire set of principal brain arteries containing aneurysms as input and returns aneurysm surfaces as output. A user first generates a surface model by manually specifying multiple thresholds for time-of-flight magnetic resonance angiography images. The system then samples small surface fragments from the entire set of brain arteries and classifies the surface fragments according to whether aneurysms are present using a point-based deep learning network (PointNet++). Finally, the system applies surface segmentation (SO-Net) to surface fragments containing aneurysms. We conduct a direct comparison of the segmentation performance of our proposed surface-based framework and an existing voxel-based method by counting voxels: our framework achieves a much higher Dice similarity (72%) than the prior approach (46%).&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2022_270_Fig1_HTML.png&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-022-0270-z</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-022-0270-z</guid>
+    </item>
+    <item>
+      <title>Integrated visual navigation based on angles-only measurements for asteroid final landing phase</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Visual navigation is imperative for successful asteroid exploration missions. In this study, an integrated visual navigation system was proposed based on angles-only measurements to robustly and accurately determine the pose of the lander during the final landing phase. The system used the lander’s global pose information provided by an orbiter, which was deployed in space in advance, and its relative motion information in adjacent images to jointly estimate its optimal state. First, the landmarks on the asteroid surface and markers on the lander were identified from the images acquired by the orbiter. Subsequently, an angles-only measurement model concerning the landmarks and markers was constructed to estimate the orbiter’s position and lander’s pose. Subsequently, a method based on the epipolar constraint was proposed to estimate the lander’s inter-frame motion. Then, the absolute pose and relative motion of the lander were fused using an extended Kalman filter. Additionally, the observability criterion and covariance of the state error were provided. Finally, synthetic image sequences were generated to validate the proposed navigation system, and numerical results demonstrated its advance in terms of robustness and accuracy.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/42064_2022_143_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s42064-022-0143-3</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s42064-022-0143-3</guid>
+    </item>
+    <item>
+      <title>AR assistance for efficient dynamic target search</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;When searching for a dynamic target in an unknown real world scene, search efficiency is greatly reduced if users lack information about the spatial structure of the scene. Most target search studies, especially in robotics, focus on determining either the shortest path when the target’s position is known, or a strategy to find the target as quickly as possible when the target’s position is unknown. However, the target’s position is often known intermittently in the real world, e.g., in the case of using surveillance cameras. Our goal is to help user find a dynamic target efficiently in the real world when the target’s position is intermittently known. In order to achieve this purpose, we have designed an AR guidance assistance system to provide optimal current directional guidance to users, based on searching a prediction graph. We assume that a certain number of depth cameras are fixed in a real scene to obtain dynamic target’s position. The system automatically analyzes all possible meetings between the user and the target, and generates optimal directional guidance to help the user catch up with the target. A user study was used to evaluate our method, and its results showed that compared to free search and a top-view method, our method significantly improves target search efficiency.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2021_266_Fig1_HTML.png&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-021-0266-0</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-021-0266-0</guid>
+    </item>
+    <item>
+      <title>Message from the Editor-in-Chief</title>
+      <description></description>
+      <link>http://link.springer.com/10.1007/s41095-022-0316-2</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-022-0316-2</guid>
+    </item>
+    <item>
+      <title>A Voronoi diagram approach for detecting defects in 3D printed fiber-reinforced polymers from microscope images</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;Fiber-reinforced polymer (FRP) composites are increasingly popular due to their superior strength to weight ratio. In contrast to significant recent advances in automating the FRP manufacturing process via 3D printing, quality inspection and defect detection remain largely manual and inefficient. In this paper, we propose a new approach to automatically detect, from microscope images, one of the major defects in 3D printed FRP parts: fiber-deficient areas (or equivalently, resin-rich areas). From cross-sectional microscope images, we detect the locations and sizes of fibers, construct their Voronoi diagram, and employ &lt;em class=&quot;a-plus-plus&quot;&gt;α&lt;/em&gt;-shape theory to determine fiber-deficient areas. Our Voronoi diagram and &lt;em class=&quot;a-plus-plus&quot;&gt;α&lt;/em&gt;-shape construction algorithms are specialized to exploit typical characteristics of 3D printed FRP parts, giving significant efficiency gains. Our algorithms robustly handle real-world inputs containing hundreds of thousands of fiber cross-sections, whether in general or non-general position.&lt;/p&gt;
+                    &lt;span class=&quot;a-plus-plus figure category-standard float-no id-fig1&quot;&gt;
+                      &lt;span class=&quot;a-plus-plus media-object&quot;&gt;
+                        &lt;img alt=&quot;&quot; src=&quot;https://static-content.springer.com/image/MediaObjects/41095_2021_265_Fig1_HTML.jpg&quot; class=&quot;a-plus-plus&quot;/&gt;
+                      &lt;/span&gt;
+                    &lt;/span&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s41095-021-0265-1</link>
+      <pubDate>2023-03-01</pubDate>
+      <guid>10.1007/s41095-021-0265-1</guid>
+    </item>
+    <item>
+      <title>Stable dispersibility of bentonite-type additive with gemini ionic liquid intercalation structure for oil-based drilling</title>
+      <description>
+                    &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                    &lt;p class=&quot;a-plus-plus&quot;&gt;In this study, the direct intercalation of gemini ionic liquids (ILs) with different alkyl chains into the bentonite (BT) interlayer as a high-performance lubricating additive for base oil 500SN was investigated. The purpose of modifying BT with an IL is to improve the dispersion stability and lubricity of BT in lubricating oil. The dispersibility and tribological properties of IL—BT as oil-based additives for 500SN depend on the increase in interlamellar space in BT and improve as the chain length is increased. More importantly, the IL—BT nanomaterial outperforms individual BT in improving wear resistance, owing to its sheet layers were deformed and sprawled in furrows along the metal surface, thereby resulting in low surface adhesion. Because of its excellent lubrication performance, IL-modified BT is a potential candidate for the main component of drilling fluid. It can be used as a lubricating additive in oil drilling and oil well construction to reduce equipment damage and ensure the normal operation of equipments.&lt;/p&gt;
+                  </description>
+      <link>http://link.springer.com/10.1007/s40544-021-0587-0</link>
+      <pubDate>2023-02-01</pubDate>
+      <guid>10.1007/s40544-021-0587-0</guid>
+    </item>
+    <item>
+      <title>Artificial Intelligence</title>
+      <description>
+                &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                &lt;p class=&quot;a-plus-plus&quot;&gt;In the fourth industrial revolution (Industry 4.0), Artificial Intelligence (AI) had been a cognitive science that produces actual value needed for relevant data with processing capabilities and algorithms. Manufacturing in the Internet-of-Thing (IoT) era will be more efficient, better quality, easier to manage, and more transparent through integration of physical and cyber technologies in Industry 4.0-based smart factories. Factory automation relies heavily on sensors and AI to make the system intelligent. Sensor technology advancements and developments linked to Industry 4.0 serve as the backbone for the inclusive expansion of industry and the economic success of any country. It is imperative that manufacturing organizations and supply chains have access to the latest low-cost sensor technology for collecting data and putting it to good use. Standard sensor types include position sensors, flow, temperature, flow rate, pressure, and force. A wide range of fields, including motorsport, health care, manufacturing, the armed forces, and agriculture all make use of them on a day-to-day basis. Increasing efficiency through automation is the goal of Industry 4.0. The purpose of this paper is to provide a brief overview and viewpoint on the most recent advancements in AI and the associated problems.&lt;/p&gt;
+                &lt;p class=&quot;a-plus-plus&quot;&gt;Attempts to define the main ideas and tools behind this new era of manufacturing in the early years of the so-called fourth industrial revolution (Industry 4.0) always ended up referring to the concept of smart machines that could communicate with each other and with the environment. When it comes to the new industry 4.0, it’s the defined cyber physical systems connected by the IoT that get all the attention. Nonetheless, several tools and applications will benefit the new industrial environment, complementing the actual formation of a smart, embedded system capable of performing autonomous tasks. And the majority of these revolutionary ideas are based on the same background theory as artificial intelligence, in which the analysis and filtration of massive amounts of incoming data from various types of sensors aids in the interpretation and recommendation of the best course of action. As a result, artificial intelligence science is well suited to the challenges that arise during the fourth industrial revolution’s consolidation. The purpose of this paper is to provide a brief overview and viewpoint on the most recent advancements in AI and the associated problems.&lt;/p&gt;
+              </description>
+      <link>http://link.springer.com/10.1007/978-981-19-1550-5_54-2</link>
+      <pubDate>2023-01-01</pubDate>
+      <guid>10.1007/978-981-19-1550-5_54-2</guid>
+    </item>
+    <item>
+      <title>Artificial Intelligence</title>
+      <description>
+                  &lt;h3 class=&quot;a-plus-plus&quot;&gt;Abstract&lt;/h3&gt;
+                  &lt;p class=&quot;a-plus-plus&quot;&gt;This chapter gives an AI overview by starting to list and compare different terms and definitions in Sect. &lt;span class=&quot;a-plus-plus internal-ref refid-sec1&quot;&gt;2.1&lt;/span&gt;. It shows, how important it is to clarify terms beforehand, as there are not always unique definitions and understanding by humans about AI. It highlights that an AI system does not represent a robot or physical machine. The software can be operated on different kinds of hardware systems or platforms but does not require to have any physical shape. Section &lt;span class=&quot;a-plus-plus internal-ref refid-sec2&quot;&gt;2.2&lt;/span&gt; gives an overview of different AI technology aspects. It shows the differences in data computation and progress between humans and computer systems. Section &lt;span class=&quot;a-plus-plus internal-ref refid-sec3&quot;&gt;2.3&lt;/span&gt; describes several AI technologies and highlights the challenge of generated bias. If the AI algorithm gets trained with an already biased data set whether that can happen with consciousness or not, it will not generate a “better human.”&lt;/p&gt;
+                  &lt;p class=&quot;a-plus-plus&quot;&gt;The next Sect. &lt;span class=&quot;a-plus-plus internal-ref refid-sec4&quot;&gt;2.4&lt;/span&gt; lists some AI challenges. A current main challenge is that humans still see AI systems as robots or machines and think of physical threats or opportunities. As AI systems can be only software modules, it is recommended to shift the broad society discussions from an attacking Terminator robot to broader ethics and responsibility discussion. Every citizen should take responsibility and proactive actions to shape “Friendly AI” systems. Like every technology, also AI can get abused and used in a not general friendly way. Section &lt;span class=&quot;a-plus-plus internal-ref refid-sec5&quot;&gt;2.5&lt;/span&gt; describes opportunities and risks of AI technology. As humans stopped being goal driven,&lt;/p&gt;
+                  &lt;p class=&quot;a-plus-plus&quot;&gt;Section &lt;span class=&quot;a-plus-plus internal-ref refid-sec6&quot;&gt;2.6&lt;/span&gt; highlights the scenario, where future AI systems might overtake the definition of goals for humans. To generate a broad awareness within society to develop and implement AI systems in daily life, it needs acceptance, transparency, and understanding. Section &lt;span class=&quot;a-plus-plus internal-ref refid-sec7&quot;&gt;2.7&lt;/span&gt; gives an overview of a humans-based classification of evolution.&lt;/p&gt;
+                </description>
+      <link>http://link.springer.com/10.1007/978-3-031-18275-4_2</link>
+      <pubDate>2023-01-01</pubDate>
+      <guid>10.1007/978-3-031-18275-4_2</guid>
+    </item>
+  </channel>
+</rss>

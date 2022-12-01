@@ -1,0 +1,42 @@
+*{
+    max-width: 100%;
+}
+img{
+    height: auto;
+}
+.lupaBuscar{
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    background: white;
+    padding: 10px;
+    cursor: pointer;
+}
+.description_resultado{
+    white-space: normal;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 4px;
+    width: 100%;
+}
+#resultados .card-body{
+    columns: 2;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card-body{
+    line-height: 18px;
+}
+.titulo_resultado{
+    line-height: 25px;
+    white-space: normal;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 22px;
+    color: #4a5568;
+    font-weight: bold;
+}
