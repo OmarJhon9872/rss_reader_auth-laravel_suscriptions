@@ -21,5 +21,8 @@ class Role extends Model
     ################################################################
     /* Relaciones */
     ################################################################
-
+    public function users(){
+        $this->belongsToMany(User::class)
+            ->withPivot('owner_id');
+    }
 }

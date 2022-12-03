@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidateBasicSearchRequest;
 use App\Http\Requests\ValidateUrlAddRssRequest;
+use App\Http\Requests\VerifyUserRequest;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\ItemContent;
+use App\Models\RoleUser;
 use App\Models\RssChannel;
+use App\Models\User;
 use App\Traits\PaginationOfResultsTrait;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -35,6 +39,143 @@ class HomeController extends Controller
         #https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml
         #https://www.reforma.com/rss/portada.xml
         #http://ep00.epimg.net/rss/cat/portada.xml
+    }
+
+    public function cambiar_analista(Request $request){
+        $analista_from = $request->analista_from;
+        $analista_to = $request->analista_to;
+
+        $categorias = Category::where('user_id', $analista_from)->get();
+        $categorias->each(function($categoria)use($analista_to){
+            $categoria->user_id = $analista_to;
+            $categoria->save();
+        });
+
+        $canales = RssChannel::where('user_id', $analista_from)->get();
+        $canales->each(function($canal)use($analista_to){
+            $canal->user_id = $analista_to;
+            $canal->save();
+        });
+
+        return redirect()->route('home.usuarios_cliente')->with('status', 'Información migrada correctamente');
+    }
+
+    public function verifica_tiene_items(Request $request, User $usuario){
+        $this->authorize('es_cliente');
+
+        if($usuario->rss_channels->count() > 0){
+            return response()->json([
+                'status'    => 'not_empty'
+            ]);
+        }
+
+        return response()->json([
+            'status'    => 'ok'
+        ]);
+    }
+
+    public function borrar_usuario(User $usuario){
+        $this->authorize('es_cliente');
+
+        if($usuario->rss_channels->count() > 0){
+            return redirect()->route('home.usuarios_cliente')->withErrors('No es posible eliminar al usuario ya que tiene elementos cargados, migra sus elementos a otro analista antes de eliminarlo');
+        }
+
+        if($usuario->employees->count() > 0){
+            return redirect()->route('home.usuarios_cliente')->withErrors('No es posible eliminar al usuario ya que tiene empleados activos');
+        }
+
+        $usuario->role->delete();
+
+        $usuario->delete();
+
+        return redirect()->route('home.usuarios_cliente')->with('status', 'Usuario borrado correctamente');
+    }
+
+    public function crear_usuario(VerifyUserRequest $request){
+        $this->authorize('es_cliente');
+
+        if(!Gate::check('es_super_admin')){
+            $maximo_licencias = auth()->user()->role->licenses;
+
+            $empleados_cliente= auth()->user()->employees->count();
+
+            if(intval($maximo_licencias) < intval($empleados_cliente)+1){
+                return redirect()->route('home.usuarios_cliente')->withErrors('No puedes crear mas usuarios, licencias insuficientes');
+            }
+        }
+        $user = User::create([
+            'name'     => $request->name,
+            'last1'    => $request->last1,
+            'last2'    => $request->last2,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+
+        if(Gate::check('es_super_admin')){
+            RoleUser::create([
+                'licenses' => $request->licenses,
+                'role_id'  => 1,
+                'user_id'  => $user->id
+            ]);
+            $tipo = "Cliente";
+        }else{
+
+            RoleUser::create([
+                'owner_id' => auth()->id(),
+                'role_id'  => $request->role,
+                'user_id'  => $user->id
+            ]);
+            $tipo = "Usuario";
+        }
+
+        return redirect()->route('home.usuarios_cliente')->with('status', $tipo.' creado correctamente');
+    }
+
+    public function cambiar_clave_usuario(VerifyUserRequest $request, User $usuario){
+        $this->authorize('es_cliente');
+
+        $usuario->name = $request->name;
+        $usuario->last1 = $request->last1;
+        $usuario->last2 = $request->last2;
+        $usuario->email = $request->email;
+
+        $usuario->role->licenses = $request->licenses;
+        $usuario->role->save();
+
+        if($request->password != ''){
+            $usuario->password = bcrypt($request->password);
+        }
+
+        $usuario->save();
+
+        return redirect()->route('home.usuarios_cliente')->with('status', 'Usuario actualizado correctamente');
+    }
+
+    public function usuarios_cliente(){
+        $this->authorize('es_cliente');
+
+        if(Gate::check('es_super_admin')){
+            $empleados = RoleUser::where('role_id', 1)->with(['user', 'desc_role'])->withCount('rss_channels')->get();
+            $titulo = 'Clientes registrados';
+        }else{
+            $empleados = auth()->user()->employees()->with(['user', 'desc_role'])->withCount('rss_channels')->get();
+            $titulo = 'Usuarios del cliente';
+        }
+
+        $roles = array(
+            ['id'=>2, 'description'=>'Analista'],
+            ['id'=>3, 'description'=>'Investigador']
+        );
+
+        $analistas = auth()->user()->employees()->where('role_id', 2)->with('user')->get()->toArray();
+
+        return view('customer.users', [
+            'empleados' => $empleados,
+            'titulo'    => $titulo,
+            'roles'    => $roles,
+            'analistas'    => $analistas,
+        ]);
     }
 
     public function actualizarCategoria(Request $request, Category $categoria){
@@ -261,7 +402,7 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $resultados = Item::latest()->with(['rss_channel', 'item_contents'])->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+        $resultados = Item::latest()->with(['rss_channel', 'categories', 'item_contents'])->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
         $titulo = "Entradas";
 
         $categorias = Category::all();
@@ -369,6 +510,7 @@ class HomeController extends Controller
         }else{
             $rss_channel = RssChannel::create([
                 'filename'            => $data['nombre_archivo'],
+                'user_id'             => auth()->id() ?? '0',
                 'channel_url'         => $data['channel']['link'] ?? '',
                 'channel_title'       => $data['channel']['title'] ?? '',
                 'channel_description' => strip_tags($data['channel']['description'] ?? '')

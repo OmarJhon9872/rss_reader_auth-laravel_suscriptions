@@ -29,6 +29,7 @@
     {{--Bootstrap--}}
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="{{asset('js/script.js')}}"></script>
+    <script src="{{asset('js/universales.js')}}"></script>
     @stack('scripts')
 </head>
 <body>
@@ -55,24 +56,25 @@
                         <!-- Authentication Links -->
                         @if(config('auth.need_auth_rss'))
                             @guest
-                                    @if (Route::has('login'))
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                        </li>
-                                    @endif
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
+                                @endif
 
-                                    @if (Route::has('register'))
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                        </li>
-                                    @endif
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
                             @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->role->desc_role->description ." - ". Auth::user()->name }}
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">

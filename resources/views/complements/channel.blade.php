@@ -1,6 +1,9 @@
 <div class="col-md-6 col-lg-4">
     <div class="card my-3">
-        <i class="fa fa-trash-o bote_basura" tipo_elemento="canal" id="{{$resultado['id']}}" aria-hidden="true"></i>
+        {{--Solo el cliente y analista puede categorizar elementos--}}
+        @can('es_cliente_o_analista')
+            <i class="fa fa-trash-o bote_basura" tipo_elemento="canal" id="{{$resultado['id']}}" aria-hidden="true"></i>
+        @endcan
         <div class="card-body" >
             <mark style="font-size: 15px;">Canal:</mark>
             <br>

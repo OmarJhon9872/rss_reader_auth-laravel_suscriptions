@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('rss_channels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
 
             $table->text('filename')->nullable();
             $table->longText('channel_url')->nullable();

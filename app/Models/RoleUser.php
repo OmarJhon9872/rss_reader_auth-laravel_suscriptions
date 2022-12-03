@@ -13,6 +13,7 @@ class RoleUser extends Model
 
     protected $fillable = [
         'owner_id',
+        'licenses',
         'role_id',
         'user_id'
     ];
@@ -21,6 +22,10 @@ class RoleUser extends Model
     /* Scopes */
     ################################################################
     /* Attributes */
+    public function getItemsCountAttribute(){
+        $id_channels = $this->rss_channels->pluck('id')->toArray();
+        return Item::whereIn('rss_channel_id', $id_channels)->count();
+    }
     ################################################################
     /* Relaciones */
     ################################################################
@@ -28,12 +33,17 @@ class RoleUser extends Model
     public function boss_user(){
         return $this->belongsTo(User::class, 'owner_id', 'id');
     }#ok
-    public function employees(){
-        return $this->hasMany(RoleUser::class, 'user_id', 'owner_id');
-    }
 
     public function user(){
         return $this->belongsTo(User::class);
+    }#ok
+
+    public function desc_role(){
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }#ok
+
+    public function rss_channels(){
+        return $this->hasMany(RssChannel::class, 'user_id', 'id');
     }#ok
 
 }

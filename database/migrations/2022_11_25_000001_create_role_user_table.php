@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('owner_id')->nullable()->constrained('roles', 'id');
+            $table->string('licenses')->nullable();
             $table->foreignId('role_id')->constrained();
             $table->foreignId('user_id')->constrained();
 

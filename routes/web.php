@@ -2,21 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/*\DB::listen(function ($query){
+    echo "<pre>".$query->sql."</pre>";
+});*/
 
 Route::get('/', 'HomeController@index')->name('index');
 #Route::get('/rss', 'HomeController@rss')->name('rss');
 
 Route::controller('HomeController')->prefix('home/')->name('home.')->group(function() {
+
+    Route::delete('/borrar_usuario/{usuario}', 'borrar_usuario')->name('borrar_usuario');
+
+    Route::post('/cambiar_analista', 'cambiar_analista')->name('cambiar_analista');
+
+    Route::post('/crear_usuario', 'crear_usuario')->name('crear_usuario');
+    Route::post('/cambiar_clave_usuario/{usuario}', 'cambiar_clave_usuario')->name('cambiar_clave_usuario');
+
+    Route::get('/usuarios', 'usuarios_cliente')->name('usuarios_cliente');
 
     Route::post('/actualizarCategoria/{categoria}', 'actualizarCategoria')->name('actualizarCategoria');
     Route::post('/guardarCategoria', 'guardarCategoria')->name('guardarCategoria');
@@ -24,6 +26,8 @@ Route::controller('HomeController')->prefix('home/')->name('home.')->group(funct
     Route::post('/verifica_nombre_categoria', 'verifica_nombre_categoria')->name('verifica_nombre_categoria');
 
     Route::get('/buscar', 'buscar')->name('buscar');
+    Route::post('/verifica_tiene_items/{usuario?}', 'verifica_tiene_items')->name('verifica_tiene_items');
+
     Route::post('/agregar_rss', 'agregar_rss')->name('agregar_rss');
     Route::post('/guardar_mostrar_campos', 'guardar_mostrar_campos')->name('guardar_mostrar_campos');
 
@@ -32,6 +36,7 @@ Route::controller('HomeController')->prefix('home/')->name('home.')->group(funct
 
     Route::get('/canales/{canal?}', 'canales')->name('canales');
     Route::get('/categorias/{categoria?}', 'categorias')->name('categorias');
+
 
 });
 

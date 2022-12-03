@@ -22,9 +22,16 @@
                         @includeIf('complements.category')
 
                     @endif
-                @empty
 
+                @empty
+                    <h3 class="p-4 my-5">No hay resultados por el momento</h3>
                 @endforelse
+
+                @if(count($resultados))
+                    <div class="col-12 text-center mt-5">
+                        {{$resultados->links()}}
+                    </div>
+                @endif
             </div>
         </div>
 @endsection

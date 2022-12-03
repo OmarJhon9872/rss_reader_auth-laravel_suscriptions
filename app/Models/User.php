@@ -36,8 +36,23 @@ class User extends Authenticatable
     /* Scopes */
     ################################################################
     /* Attributes */
+    public function getRoleUserAttribute(){
+        return $this->role->description;
+    }
     ################################################################
     /* Relaciones */
     ################################################################
+    public function employees(){
+        return $this->hasMany(RoleUser::class, 'owner_id', 'id');
+    }#ok
 
+    public function my_boss(){
+        return $this->hasOne(RoleUser::class);
+    }#ok
+    public function role(){
+        return $this->hasOne(RoleUser::class);
+    }#ok
+    public function rss_channels(){
+        return $this->hasMany(RssChannel::class);
+    }#ok
 }
