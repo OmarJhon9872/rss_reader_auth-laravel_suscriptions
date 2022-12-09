@@ -401,10 +401,12 @@ class HomeController extends Controller
             $view = "categories";
             $titulo = "Categorias";
         }else{
-            $channel_id = CategoryRssChannel::select(['rss_channel_id'])->whereCategoryId($categoria->id)->get();
-            $resultados = Item::whereIn('rss_channel_id', $channel_id->pluck('rss_channel_id')->toArray())->latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
 
-            /*$resultados = $categoria->items()->latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);*/
+            /*Resultados variable que trae los items a paginar*/
+            $resultados = Item::whereHas('categories', function($category)use($categoria){
+                $category->where('categories.id', $categoria->id);
+            })->latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+
             $view = "home";
             $titulo = "Entradas de categoria: ".$categoria->name;
         }
