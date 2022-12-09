@@ -89,17 +89,24 @@
                                         <h4 class="mb-2">Categorizar elemento: </h4>
                                     @endif
 
+                                    <div class="buscadorCategorizacionCaja my-3">
+                                        <input type="text" class="form-control buscadorCategorizacionInput" placeholder="Buscar categoria">
+                                    </div>
+
+
                                     @forelse($categorias as $categoria)
-                                        <div class="form-check my-3">
-                                            <input class="form-check-input"
-                                                   name="categorias[]"
-                                                   type="checkbox"
-                                                   value="{{$categoria['id']}}"
-                                                   id="categoriaelemento{{$categoria['id']}}"
-                                                   {{in_array($categoria['id'], collect($resultado['categories'])->pluck('id')->toArray()) ? 'checked': ''}}>
-                                            <label class="form-check-label" for="categoriaelemento{{$categoria['id']}}">
-                                                {{$categoria['name']}}
-                                            </label>
+                                        <div class="buscadorCategorizacionNombre" categoria="{{$categoria['name']}}">
+                                            <div class="form-check my-3">
+                                                <input class="form-check-input"
+                                                       name="categorias[]"
+                                                       type="checkbox"
+                                                       value="{{$categoria['id']}}"
+                                                       id="categoriaelemento{{$categoria['id']}}"
+                                                       {{in_array($categoria['id'], collect($resultado['categories'])->pluck('id')->toArray()) ? 'checked': ''}}>
+                                                <label class="form-check-label" for="categoriaelemento{{$categoria['id']}}">
+                                                    {{$categoria['name']}}
+                                                </label>
+                                            </div>
                                         </div>
                                     @empty
                                         Aun no hay categorias en sistema
@@ -141,3 +148,32 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $(function(){
+
+            /*Buscador de categoria, keyup busca termino de cada item para categorizarlo */
+            $('.buscadorCategorizacionInput').keyup(function(){
+                var terminoBuscar = this.value.toUpperCase();
+                if(terminoBuscar.length !== 0){
+                    $('.buscadorCategorizacionNombre').each(function(){
+                        let nombreCaja = this.getAttribute('categoria');
+
+                        /*Pasamos a mayusculas y quitamos acentos y espacios*/
+                        nombreCaja = nombreCaja.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+                        terminoBuscar = terminoBuscar.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+
+                        if(nombreCaja.indexOf(terminoBuscar) === -1){
+                            this.style.display = 'none';
+                        }else{
+                            this.style.display = 'initial';
+                        }
+                    });
+                }else{
+                    $('.buscadorCategorizacionNombre').css('display', 'initial');
+                }
+            });
+        });
+    </script>
+@endpush
