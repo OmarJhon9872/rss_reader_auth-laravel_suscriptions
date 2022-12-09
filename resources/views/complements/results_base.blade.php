@@ -14,7 +14,7 @@
                     RSS finder
 
                     {{--Solo el cliente y analista puede categorizar elementos--}}
-                    @can('es_analista')
+                    @can('es_solo_analista')
                         <!-- Button trigger modal agregar rss -->
                         <button type="button" class="ms-3 btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Agregar RSS

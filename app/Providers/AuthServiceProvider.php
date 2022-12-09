@@ -43,6 +43,10 @@ class AuthServiceProvider extends ServiceProvider
             $rol_id = $user->role->desc_role->id;
             return $rol_id == 1 or $rol_id == 4;
         });
+        Gate::define('es_solo_analista', function(User $user){
+            $rol_id = $user->role->desc_role->id;
+            return $rol_id == 2;
+        });
         Gate::define('es_analista', function(User $user){
             $rol_id = $user->role->desc_role->id;
             return $rol_id == 2 or $rol_id == 4;

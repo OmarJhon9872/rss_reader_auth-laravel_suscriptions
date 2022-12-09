@@ -6,6 +6,7 @@ use App\Http\Requests\ValidateBasicSearchRequest;
 use App\Http\Requests\ValidateUrlAddRssRequest;
 use App\Http\Requests\VerifyUserRequest;
 use App\Models\Category;
+use App\Models\CategoryRssChannel;
 use App\Models\Item;
 use App\Models\ItemContent;
 use App\Models\RoleUser;
@@ -297,14 +298,21 @@ class HomeController extends Controller
     public function buscar(Request $request){
 
         $resultado = [];
-        $resaltar = "<script>$(function(){ $('*').highlight('".$request->buscar."');})</script>";
+
+        if(strlen($request->buscar) > 2){
+            $resaltar = "<script>$(function(){ $('*').highlight('".$request->buscar."');})</script>";
+        }
 
         /*#######################################*/
         /*Busquedas exactas*/
         $resultado[] = RssChannel::where('channel_title', 'like', '%'.$request->buscar.'%')->get();
+
         $resultado[] = Category::where('name', 'like', '%'.$request->buscar.'%')
                         ->orWhere('description', 'like', '%'.$request->buscar.'%')->get();
+
         $resultado[] = Item::where('keywords', 'like', '%'.$request->buscar.'%')->with(['rss_channel', 'item_contents', 'categories'])->get();
+        $resultado[] = Item::where('title', 'like', '%'.$request->buscar.'%')->with(['rss_channel', 'item_contents', 'categories'])->get();
+
         $resultado[] = Item::whereHas('item_contents', function($query)use($request){
             $query->where('value', 'like', '%'.$request->buscar.'%');
         })->with(['rss_channel', 'item_contents', 'categories'])->get();
@@ -316,14 +324,20 @@ class HomeController extends Controller
         if(count($cantidad_palabras) > 1){
             foreach ($cantidad_palabras as $palabra){
                 $resultado[] = RssChannel::where('channel_title', 'like', '%'.$palabra.'%')->get();
+
                 $resultado[] = Category::where('name', 'like', '%'.$request->buscar.'%')
                     ->orWhere('description', 'like', '%'.$request->buscar.'%')->get();
+
                 $resultado[] = Item::where('keywords', 'like', '%'.$palabra.'%')->with(['rss_channel', 'item_contents', 'categories'])->get();
+                $resultado[] = Item::where('title', 'like', '%'.$palabra.'%')->with(['rss_channel', 'item_contents', 'categories'])->get();
+
                 $resultado[] = Item::whereHas('item_contents', function($query)use($palabra){
                     $query->where('value', 'like', '%'.$palabra.'%');
                 })->with(['rss_channel', 'item_contents', 'categories'])->get();
 
-                $resaltar .= "<script>$(function(){ $('*').highlight('".$palabra."');})</script>";
+                if(strlen($palabra) > 2) {
+                    $resaltar .= "<script>$(function(){ $('*').highlight('" . $palabra . "');})</script>";
+                }
             }
         }
 
@@ -387,7 +401,10 @@ class HomeController extends Controller
             $view = "categories";
             $titulo = "Categorias";
         }else{
-            $resultados = $categoria->items()->latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+            $channel_id = CategoryRssChannel::select(['rss_channel_id'])->whereCategoryId($categoria->id)->get();
+            $resultados = Item::whereIn('rss_channel_id', $channel_id->pluck('rss_channel_id')->toArray())->latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+
+            /*$resultados = $categoria->items()->latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);*/
             $view = "home";
             $titulo = "Entradas de categoria: ".$categoria->name;
         }
