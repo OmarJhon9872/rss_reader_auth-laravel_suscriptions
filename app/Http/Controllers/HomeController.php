@@ -298,6 +298,7 @@ class HomeController extends Controller
     public function buscar(Request $request){
 
         $resultado = [];
+        $resaltar = '';
 
         if(strlen($request->buscar) > 2){
             $resaltar = "<script>$(function(){ $('*').highlight('".$request->buscar."');})</script>";
