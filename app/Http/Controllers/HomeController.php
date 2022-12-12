@@ -96,7 +96,7 @@ class HomeController extends Controller
     public function crear_usuario(VerifyUserRequest $request){
         $this->authorize('es_cliente');
 
-        if(!Gate::check('es_super_admin')){
+        if(!Gate::check('es_super_admin')){ /*Si no es super admin se compreuban licencias*/
             $maximo_licencias = auth()->user()->role->licenses;
 
             $empleados_cliente= auth()->user()->employees->count();
@@ -113,14 +113,14 @@ class HomeController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        if(Gate::check('es_super_admin')){
+        if(Gate::check('es_super_admin')){ /*Super admin solo crea clientes*/
             RoleUser::create([
                 'licenses' => $request->licenses,
                 'role_id'  => 1,
                 'user_id'  => $user->id
             ]);
             $tipo = "Cliente";
-        }else{
+        }else{/*Clientes crean analistas e investigadores*/
 
             RoleUser::create([
                 'owner_id' => auth()->id(),
@@ -174,8 +174,8 @@ class HomeController extends Controller
         return view('customer.users', [
             'empleados' => $empleados,
             'titulo'    => $titulo,
-            'roles'    => $roles,
-            'analistas'    => $analistas,
+            'roles'     => $roles,
+            'analistas' => $analistas,
         ]);
     }
 
@@ -462,7 +462,6 @@ class HomeController extends Controller
     public function guardar_mostrar_campos(Request $request){
         $campos = $request->marcados;
 
-        $item_id = $request->item_id;
         $channel_id = $request->channel_id;
 
         Item::whereRssChannelId($channel_id)->get()->each(function($item)use($campos){

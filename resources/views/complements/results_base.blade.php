@@ -91,7 +91,8 @@
                     <div class="modal-body">
                         <div id="agregarRss">
                             <div class="my-3 position-relative">
-                                <input type="text" id="nuevo_rss" class="form-control" placeholder="URL de RSS" autocomplete="off">
+                                {{--<input type="text" id="nuevo_rss" class="form-control" placeholder="URL de RSS" autocomplete="off">--}}
+                                <textarea id="nuevo_rss" cols="30" rows="10" class="form-control" placeholder="URLs de RSS por renglón." autocomplete="off"></textarea>
                                 <div class="w-100" id="validacionRss"></div>
                                 <button class="btn mt-2 btn-success w-100" id="agregarRssBoton">Agregar</button>
                             </div>
@@ -209,7 +210,8 @@
 
                 /*Cuando se trata de cargar un rss */
                 $("#agregarRssBoton").click(function(){
-                    var url = $("#nuevo_rss").val()
+
+                    var url = $("#nuevo_rss").val();
 
                     if(url == ''){
                         $("#validacionRss").html("");
@@ -217,21 +219,33 @@
                         return;
                     }
 
-                    if(!isValidUrl(url)){
+                    var hay_error_front = false;
+                    var errores_front = [];
+                    url.split('\n').forEach(function(urlEach){
+                        if(!isValidUrl(urlEach) && urlEach !== ''){
+                            hay_error_front = true;
+                            errores_front.push(urlEach)
+                        }
+                    });
+
+                    if(hay_error_front){
                         $("#validacionRss").html("");
-                        $("#validacionRss").html("<small style='color: red;' class='mt-2'>Url invalida</small>");
-                        return
+                        errores_front.forEach(function(error){
+                            $("#validacionRss")[0].innerHTML += "<small style='color: red;' class='mb-2'>Url invalida: "+error+"</small><br>";
+                        })
+                        return;
                     }
 
                     $("#nuevo_rss")[0].setAttribute('disabled', '');
                     $("#agregarRssBoton")[0].setAttribute('disabled', '');
 
+                    /*url: "{{route('home.agregar_rss')}}", ANTERIOR*/
                     $.ajax({
                         dataType: 'json',
                         type: 'post',
                         async: false,
                         headers: {'X-CSRF-TOKEN': $("[name='csrf-token']").attr('content')},
-                        url: "{{route('home.agregar_rss')}}",
+                        url: "{{route('rss_masivo')}}",
                         data: { rss_url: url },
                         beforeSend: function() {
 
@@ -246,7 +260,7 @@
                             '');
                         }
                     }).done(function(data){
-                        console.log("data", data);
+
                         /*data.data.fields_show puede devolver:
                         * url_error
                         * file_error
@@ -260,8 +274,24 @@
 
                                 var camposMostrar = [];
 
+                                /*TODO terminar de mostrar errores de urls de controlador */
                                 if(typeof data.data.fields_show != "string"){
-                                    camposMostrar.push("<h5 class='mb-2'>Selecciona campos a mostrar</h5>");
+
+                                    /*Mostrar los errores en caso de que haya en algun url o general*/
+                                    if(data.data.errores.length !== 0){
+                                        camposMostrar.push("<b class='mb-2 fst-italic' style='color: red;'>Se encontraron los siguientes errrores: </b>");
+
+                                        camposMostrar.push("<ul>");
+                                            data.data.errores.forEach(function(error, indiceError){
+                                                camposMostrar.push('<li style="color: red;">'+error.url+' <ul><li class="fa link-secondary">'+error.mensaje+'</li></ul></li>');
+                                            });
+                                        camposMostrar.push("</ul>");
+
+                                        camposMostrar.push("<small class='mb-2' style='color: red;'>REALIZA LA CORRECCIÓN DE LOS ERRORES EN UNA PROXIMA CARGA</small><hr>");
+                                    }
+
+                                    camposMostrar.push("<h5 class='mb-2'>Las demas urls fueron cargadas correctamente, selecciona los campos a mostrar</h5>");
+                                    camposMostrar.push("<i class='mb-2'>No todos los campos se encuentran en los elementos RSS.</i>");
                                     camposMostrar.push("<input type='hidden' id='channel_id' value='"+data.data.channel_id+"'>");
                                     camposMostrar.push("<input type='hidden' id='item_id' value='"+data.data.item_id+"'>");
 

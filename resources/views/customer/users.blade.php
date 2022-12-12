@@ -14,7 +14,7 @@
                     <i class="mb-5">
                         {{ "Licencias contratadas: ". auth()->user()->role->licenses }}
                         <br>
-                        {{  "Licencias empleadas: ". auth()->user()->employees->count() }}
+                        {{  "Licencias empleadas: ". auth()->user()->employees()->count() }}
                     </i>
                 @endcannot
             </div>

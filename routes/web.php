@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('index');
 #Route::get('/rss', 'HomeController@rss')->name('rss');
+Route::post('/rss_masivo', 'PruebasController@rss_masivo')->name('rss_masivo');
 
 Route::controller('HomeController')->prefix('home/')->name('home.')->group(function() {
 

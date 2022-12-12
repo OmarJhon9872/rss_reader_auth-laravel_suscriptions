@@ -43,7 +43,7 @@ class RoleUser extends Model
     }#ok
 
     public function rss_channels(){
-        return $this->hasMany(RssChannel::class, 'user_id', 'id');
+        return $this->hasMany(RssChannel::class, 'user_id', 'user_id');
     }#ok
 
 }
