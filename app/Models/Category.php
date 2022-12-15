@@ -27,6 +27,7 @@ class Category extends Model
         if($rol_usuario == 1){
 
             $id_empleados = auth()->user()->employees->pluck('user_id')->toArray();
+            $id_empleados[] = auth()->id();
 
             static::addGlobalScope('item_propios_cliente', function (Builder $builder)use($id_empleados) {
                 $builder->whereIn('user_id', $id_empleados);
@@ -47,11 +48,21 @@ class Category extends Model
     ################################################################
     /* Relaciones */
     ################################################################
-    public function items(){
-        return $this->belongsToMany(Item::class, 'category_rss_channel');
+    public function getItemsAttribute(){
+        $item_ids = $this->cat_rss_channel_tble->pluck('item_id')->toArray();
+
+        return Item::whereIn('id', $item_ids)->get();
+    }
+
+    public function cat_rss_channel_tble(){
+        return $this->hasMany(CategoryRssChannel::class);
     }
 
     public function rss_channels(){
         return $this->belongsToMany(RssChannel::class);
+    }
+
+    public function subcategories(){
+        return $this->hasMany(Category::class);
     }
 }

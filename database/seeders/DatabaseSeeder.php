@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $admin1 = User::factory()->create([
-            'name' => 'Admin1 Jonathan Omar',
+            'name' => 'Admin1 Persona',
             'email' => 'admin1@gmail.com'
         ]);
 
         $admin2 = User::factory()->create([
-            'name' => 'Admin 2 Jonathan Omar',
+            'name' => 'Admin 2 Fulano',
             'email' => 'admin2@gmail.com'
         ]);
 

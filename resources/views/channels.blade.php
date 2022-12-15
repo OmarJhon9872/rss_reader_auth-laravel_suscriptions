@@ -15,7 +15,7 @@
                     @includeIf('complements.channel')
 
                 @empty
-
+                    <b class="my-4">Por el momento no hay más categorias por mostrar</b>
                 @endforelse
             </div>
         </div>

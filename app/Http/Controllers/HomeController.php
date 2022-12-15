@@ -188,7 +188,10 @@ class HomeController extends Controller
     }
 
     public function guardarCategoria(Request $request){
+        $sucategoria = $request->subcategoria;
+
         Category::create([
+            'category_id' => $sucategoria == '0' ? null:$sucategoria,
             'user_id'     => auth()->id() ?? '0',
             'name'        => $request->name,
             'description' => $request->description
@@ -264,7 +267,7 @@ class HomeController extends Controller
                 $message = 'Elemento no encontrado';
             }
 
-            if($category->items->count() > 0){
+            if($category->items->count() > 0 or $category->subcategories->count() > 0){
                 $proceder = 0;
                 $message = 'Categoria con elementos, no es posible borrar';
             }
@@ -368,16 +371,29 @@ class HomeController extends Controller
 
         $categorias = Category::all();
 
+        /*Creacion de mapa de categorias para referencia del usuario*/
+        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
+        $htmlCadenaMapa = "<ul>";
+        foreach ($todas as $categoria){
+            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
+
+            if($categoria->subcategories->count() != 0) {
+                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
+            }
+        }
+        $htmlCadenaMapa .= "</ul>";
+
         return view('home', [
             'resultados' => $resultados,
             'titulo'     => $titulo,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'mapaCategorias' => $htmlCadenaMapa
         ]);
     }
 
     public function canales(RssChannel $canal){
         if($canal->toArray() == []){
-            $resultados = RssChannel::latest()->with(['categories'])->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+            $resultados = RssChannel::latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
             $view = "channels";
             $titulo = "Canales";
         }else{
@@ -388,37 +404,92 @@ class HomeController extends Controller
 
         $categorias = Category::all();
 
+        /*Creacion de mapa de categorias para referencia del usuario*/
+        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
+        $htmlCadenaMapa = "<ul>";
+        foreach ($todas as $categoria){
+            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
+
+            if($categoria->subcategories->count() != 0) {
+                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
+            }
+        }
+        $htmlCadenaMapa .= "</ul>";
+
         return view($view, [
             'resultados' => $resultados,
             'titulo'     => $titulo,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'mapaCategorias' => $htmlCadenaMapa
         ]);
     }
 
     public function categorias(Category $categoria){
 
         if($categoria->toArray() == []){
-            $resultados = Category::latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+            $resultados = Category::whereCategoryId(null)
+                                    ->latest()
+                                    ->get();
+
             $view = "categories";
             $titulo = "Categorias";
+            $idCategoriaPadre = '0';
+
         }else{
 
-            /*Resultados variable que trae los items a paginar*/
-            $resultados = Item::whereHas('categories', function($category)use($categoria){
+            /*Verificamos subcategorias*/
+            $resultados = $categoria->subcategories;
+
+            /*Verificamos items entre categorias mezclados*/
+            $resultadosItems = Item::whereHas('categories', function($category)use($categoria){
                 $category->where('categories.id', $categoria->id);
             })->latest()->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
 
-            $view = "home";
-            $titulo = "Entradas de categoria: ".$categoria->name;
+            $view = "categories";
+            $titulo = "Subcategorias de la categoria: ".$categoria->name;
+            $idCategoriaPadre = $categoria->id;
+
         }
 
         $categorias = Category::all();
 
+        /*Creacion de mapa de categorias para referencia del usuario*/
+        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
+        $htmlCadenaMapa = "<ul>";
+        foreach ($todas as $categoria){
+            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
+
+            if($categoria->subcategories->count() != 0) {
+                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
+            }
+        }
+        $htmlCadenaMapa .= "</ul>";
+
         return view($view, [
             'resultados' => $resultados,
             'titulo'     => $titulo,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'resultadosItems' => $resultadosItems ?? [],
+            'idCategoriaPadre' => $idCategoriaPadre,
+            'mapaCategorias' => $htmlCadenaMapa
         ]);
+    }
+
+    public function crearMapaCategorias($categoria, &$htmlCadenaMapa){
+        if($categoria->subcategories->count() != 0){
+            $htmlCadenaMapa .= "<ul>";
+        }
+        foreach ($categoria->subcategories as $categoriaInterna){
+
+            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoriaInterna->id."</i>, ".$categoriaInterna->name."</li>";
+
+            if($categoriaInterna->subcategories->count() != 0) {
+                $this->crearMapaCategorias($categoriaInterna, $htmlCadenaMapa);
+            }
+        }
+        if($categoria->subcategories->count() != 0){
+            $htmlCadenaMapa .= "</ul>";
+        }
     }
 
     public function index(){
@@ -427,10 +498,23 @@ class HomeController extends Controller
 
         $categorias = Category::all();
 
+        /*Creacion de mapa de categorias para referencia del usuario*/
+        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
+        $htmlCadenaMapa = "<ul>";
+        foreach ($todas as $categoria){
+            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
+
+            if($categoria->subcategories->count() != 0) {
+                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
+            }
+        }
+        $htmlCadenaMapa .= "</ul>";
+
         return view('home', [
-            'resultados' => $resultados,
-            'titulo'     => $titulo,
-            'categorias' => $categorias
+            'resultados'     => $resultados,
+            'titulo'         => $titulo,
+            'categorias'     => $categorias,
+            'mapaCategorias' => $htmlCadenaMapa
         ]);
     }
 

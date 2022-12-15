@@ -7,7 +7,7 @@
             <i class="fa fa-trash-o bote_basura" tipo_elemento="categoria" id="{{$resultado['id']}}" aria-hidden="true"></i>
         @endcan
         <div class="card-body" >
-            <mark style="font-size: 15px;">Categoria:</mark>
+            <mark style="font-size: 15px;">Categoria</mark>
             <br>
             <a title="{{$resultado['name']}}" class="w-100 mt-2 titulo_resultado" href="{{ route('home.categorias', ['categoria' => $resultado['id']]) }}" >
                 {{$resultado['name']}}

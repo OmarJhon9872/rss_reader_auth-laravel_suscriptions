@@ -90,13 +90,29 @@
                                     @endif
 
                                     <div class="buscadorCategorizacionCaja my-3">
-                                        <input type="text" class="form-control buscadorCategorizacionInput" placeholder="Buscar categoria">
+                                        <input type="text" class="form-control buscadorCategorizacionInput" placeholder="Buscar nombre de categoria">
+                                    </div>
+
+                                    {{--Mostrar mapa de categorias--}}
+                                    <p>
+                                        <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#multiCollapseMapaCategorias" role="button" aria-expanded="false" aria-controls="multiCollapseMapaCategorias">
+                                            Mostrar mapa de categorias
+                                        </a>
+                                    </p>
+                                    <div class="row">
+                                        <div class="col mb-2">
+                                            <div class="collapse multi-collapse" id="multiCollapseMapaCategorias">
+                                                <div class="card card-body">
+                                                    {!! $mapaCategorias !!}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
 
                                     @forelse($categorias as $categoria)
                                         <div class="buscadorCategorizacionNombre" categoria="{{$categoria['name']}}">
-                                            <div class="form-check my-3">
+                                            <div class="form-check mb-2">
                                                 <input class="form-check-input"
                                                        name="categorias[]"
                                                        type="checkbox"
@@ -104,6 +120,7 @@
                                                        id="categoriaelemento{{$categoria['id']}}"
                                                        {{in_array($categoria['id'], collect($resultado['categories'])->pluck('id')->toArray()) ? 'checked': ''}}>
                                                 <label class="form-check-label" for="categoriaelemento{{$categoria['id']}}">
+                                                    <i>Id: {{$categoria['id']}}, </i>
                                                     {{$categoria['name']}}
                                                 </label>
                                             </div>
