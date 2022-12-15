@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    private const PER_PAGE_SEARCH = 9;
+    private const PER_PAGE_SIMPLE_PAGINATION = 15;
 
     protected $fillable = [
         'name',
@@ -54,5 +56,28 @@ class User extends Authenticatable
     }#ok
     public function rss_channels(){
         return $this->hasMany(RssChannel::class);
+    }#ok
+
+    public function actions(){
+        return $this->hasMany(ItemAction::class);
+    }#ok
+
+    /*Action numero 1 featured*/
+    public function getItemsFeaturedAttribute(){
+        $id_items = $this->actions->where('action', 1)->pluck('item_id')->toArray();
+
+        return Item::whereIn('id', $id_items)
+                        ->latest()
+                        ->with(['rss_channel', 'categories', 'item_contents']);
+                        /*->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);*/
+    }#ok
+
+    /*Action numero 2 vistos*/
+    public function getItemsLookedAttribute(){
+        $id_items = $this->actions->where('action', 2)->pluck('item_id')->toArray();
+        return Item::whereIn('id', $id_items)
+                        ->latest()
+                        ->with(['rss_channel', 'categories', 'item_contents']);
+                        /*->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);*/
     }#ok
 }

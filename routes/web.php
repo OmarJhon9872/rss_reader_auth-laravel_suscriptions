@@ -14,6 +14,8 @@ Route::controller('HomeController')->prefix('home/')->name('home.')->group(funct
 
     Route::delete('/borrar_usuario/{usuario}', 'borrar_usuario')->name('borrar_usuario');
 
+    Route::post('/cambiar_accion_boton/{tipo?}', 'cambiar_accion_boton')->name('cambiar_accion_boton');
+
     Route::post('/cambiar_analista', 'cambiar_analista')->name('cambiar_analista');
 
     Route::post('/crear_usuario', 'crear_usuario')->name('crear_usuario');
@@ -38,6 +40,8 @@ Route::controller('HomeController')->prefix('home/')->name('home.')->group(funct
     Route::get('/canales/{canal?}', 'canales')->name('canales');
     Route::get('/categorias/{categoria?}', 'categorias')->name('categorias');
 
+    Route::get('/favoritos', 'itemsFavoritos')->name('favoritos');
+    Route::get('/vistos', 'itemsVistos')->name('vistos');
 
 });
 

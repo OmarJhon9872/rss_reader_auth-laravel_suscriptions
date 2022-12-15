@@ -8,11 +8,13 @@ use App\Http\Requests\VerifyUserRequest;
 use App\Models\Category;
 use App\Models\CategoryRssChannel;
 use App\Models\Item;
+use App\Models\ItemAction;
 use App\Models\ItemContent;
 use App\Models\RoleUser;
 use App\Models\RssChannel;
 use App\Models\User;
 use App\Traits\PaginationOfResultsTrait;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
@@ -40,6 +42,59 @@ class HomeController extends Controller
         #https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml
         #https://www.reforma.com/rss/portada.xml
         #http://ep00.epimg.net/rss/cat/portada.xml
+    }
+
+    public function cambiar_accion_boton(Request $request, $tipo){
+        $itemAction = ItemAction::whereUserId(auth()->id())
+                                ->whereItemId($request->id)
+                                ->whereAction($tipo)
+                                ->first();
+
+
+        if($itemAction != null){
+            $itemAction->delete();
+            $clase = 'deleted';
+        }else{
+            ItemAction::create([
+                'user_id' => auth()->id(),
+                'item_id' => $request->id,
+                'action'  => $tipo
+            ]);
+            $clase = 'added';
+        }
+
+        return response()->json([
+            'status' => 'ok',
+            'action' => $clase,
+            'type'   => $tipo
+        ]);
+
+    }
+
+    public function itemsVistos(){
+        $resultados = auth()->user()->itemsLooked->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+
+        $categorias = Category::all();
+
+        return view('home', [
+            'resultados' => $resultados,
+            'titulo'     => "Elementos vistos",
+            'categorias' => $categorias,
+            'mapaCategorias' => $this->armarMenuCategoriasMetodo()
+        ]);
+    }
+
+    public function itemsFavoritos(){
+        $resultados = auth()->user()->itemsFeatured->simplePaginate($this::PER_PAGE_SIMPLE_PAGINATION);
+
+        $categorias = Category::all();
+
+        return view('home', [
+            'resultados' => $resultados,
+            'titulo'     => "Elementos favoritos",
+            'categorias' => $categorias,
+            'mapaCategorias' => $this->armarMenuCategoriasMetodo()
+        ]);
     }
 
     public function cambiar_analista(Request $request){
@@ -371,23 +426,11 @@ class HomeController extends Controller
 
         $categorias = Category::all();
 
-        /*Creacion de mapa de categorias para referencia del usuario*/
-        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
-        $htmlCadenaMapa = "<ul>";
-        foreach ($todas as $categoria){
-            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
-
-            if($categoria->subcategories->count() != 0) {
-                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
-            }
-        }
-        $htmlCadenaMapa .= "</ul>";
-
         return view('home', [
             'resultados' => $resultados,
             'titulo'     => $titulo,
             'categorias' => $categorias,
-            'mapaCategorias' => $htmlCadenaMapa
+            'mapaCategorias' => $this->armarMenuCategoriasMetodo()
         ]);
     }
 
@@ -404,23 +447,11 @@ class HomeController extends Controller
 
         $categorias = Category::all();
 
-        /*Creacion de mapa de categorias para referencia del usuario*/
-        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
-        $htmlCadenaMapa = "<ul>";
-        foreach ($todas as $categoria){
-            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
-
-            if($categoria->subcategories->count() != 0) {
-                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
-            }
-        }
-        $htmlCadenaMapa .= "</ul>";
-
         return view($view, [
             'resultados' => $resultados,
             'titulo'     => $titulo,
             'categorias' => $categorias,
-            'mapaCategorias' => $htmlCadenaMapa
+            'mapaCategorias' => $this->armarMenuCategoriasMetodo()
         ]);
     }
 
@@ -453,25 +484,13 @@ class HomeController extends Controller
 
         $categorias = Category::all();
 
-        /*Creacion de mapa de categorias para referencia del usuario*/
-        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
-        $htmlCadenaMapa = "<ul>";
-        foreach ($todas as $categoria){
-            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
-
-            if($categoria->subcategories->count() != 0) {
-                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
-            }
-        }
-        $htmlCadenaMapa .= "</ul>";
-
         return view($view, [
             'resultados' => $resultados,
             'titulo'     => $titulo,
             'categorias' => $categorias,
             'resultadosItems' => $resultadosItems ?? [],
             'idCategoriaPadre' => $idCategoriaPadre,
-            'mapaCategorias' => $htmlCadenaMapa
+            'mapaCategorias' => $this->armarMenuCategoriasMetodo()
         ]);
     }
 
@@ -498,23 +517,11 @@ class HomeController extends Controller
 
         $categorias = Category::all();
 
-        /*Creacion de mapa de categorias para referencia del usuario*/
-        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
-        $htmlCadenaMapa = "<ul>";
-        foreach ($todas as $categoria){
-            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
-
-            if($categoria->subcategories->count() != 0) {
-                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
-            }
-        }
-        $htmlCadenaMapa .= "</ul>";
-
         return view('home', [
             'resultados'     => $resultados,
             'titulo'         => $titulo,
             'categorias'     => $categorias,
-            'mapaCategorias' => $htmlCadenaMapa
+            'mapaCategorias' => $this->armarMenuCategoriasMetodo()
         ]);
     }
 
@@ -875,5 +882,21 @@ class HomeController extends Controller
             $cadena );
 
         return $cadena;
+    }
+
+    public function armarMenuCategoriasMetodo(){
+        /*Creacion de mapa de categorias para referencia del usuario*/
+        $todas = Category::whereCategoryId(null)->with(['subcategories'])->get();
+        $htmlCadenaMapa = "<ul>";
+        foreach ($todas as $categoria){
+            $htmlCadenaMapa .= "<li class='mt-1'><i>Id: ".$categoria->id."</i>, ".$categoria->name."</li>";
+
+            if($categoria->subcategories->count() != 0) {
+                $this->crearMapaCategorias($categoria, $htmlCadenaMapa);
+            }
+        }
+        $htmlCadenaMapa .= "</ul>";
+
+        return $htmlCadenaMapa;
     }
 }

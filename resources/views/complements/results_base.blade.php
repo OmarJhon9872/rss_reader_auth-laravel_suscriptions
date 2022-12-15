@@ -60,11 +60,19 @@
                                 @endif
 
                                 @if(!Route::is('index') )
-                                    <a href="{{route('index')}}" class="ms-2 btn btn-outline-success">Mostrar entradas</a>
+                                    <a href="{{route('index')}}" class="ms-2 btn btn-outline-info">Mostrar entradas</a>
                                 @endif
 
                                 @if(!Route::is('home.categorias') )
-                                    <a href="{{route('home.categorias')}}" class="ms-2 btn btn-outline-info btn_categorias">Mostrar categorias</a>
+                                    <a href="{{route('home.categorias')}}" class="ms-2 btn btn-outline-success btn_categorias">Mostrar categorias</a>
+                                @endif
+
+                                @if(!Route::is('home.favoritos') )
+                                    <a href="{{route('home.favoritos')}}" class="ms-2 btn btn-outline-warning btn_categorias">Mostrar favoritos</a>
+                                @endif
+
+                                @if(!Route::is('home.vistos') )
+                                    <a href="{{route('home.vistos')}}" class="ms-2 btn btn-outline-primary btn_categorias">Mostrar vistos</a>
                                 @endif
                             </div>
                         </form>

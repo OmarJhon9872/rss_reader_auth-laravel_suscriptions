@@ -28,6 +28,7 @@
 
     {{--Bootstrap--}}
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="{{asset('js/script.js')}}"></script>
     <script src="{{asset('js/universales.js')}}"></script>
     @stack('scripts')
@@ -97,7 +98,67 @@
             @yield('content')
         </main>
 
+        <script>
+            window.onload = function(){
+                /*Inicializacion de tooltips*/
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                })
 
+                /*Acciones de botones de likes*/
+                $(".vistoBoton, .favoritoBoton").click(function(){
+                    var id_item = this.getAttribute('item');
+                    var tipo_el = this.getAttribute('tipo');
+
+                    if(tipo_el == 'favorito'){
+                        var data = makePostRequest("{{route('home.cambiar_accion_boton') }}/1", {id: id_item});
+                    }
+                    else if(tipo_el == 'visto'){
+                        var data = makePostRequest("{{route('home.cambiar_accion_boton') }}/2", {id: id_item});
+                    }
+
+                    if(data){
+                        if(data.status == 'ok'){
+                            if(data.action == 'added'){
+                                if(tipo_el == 'favorito'){
+                                    /*Lo ponemos-quitamos en modal y vista principal*/
+                                    document.querySelectorAll('[item="'+id_item+'"][tipo="'+tipo_el+'"]').forEach(function(item){
+                                        item.classList.remove('fa-star-o');
+                                        item.classList.add('fa-star');
+                                    });
+                                }else{
+                                    /*Lo ponemos-quitamos en modal y vista principal*/
+                                    document.querySelectorAll('[item="'+id_item+'"][tipo="'+tipo_el+'"]').forEach(function(item){
+                                        item.classList.remove('fa-square-o');
+                                        item.classList.add('fa-check-square-o');
+                                    });
+                                }
+                            }
+                            else if(data.action == 'deleted'){
+                                if(tipo_el == 'favorito'){
+                                    /*Lo ponemos-quitamos en modal y vista principal*/
+                                    document.querySelectorAll('[item="'+id_item+'"][tipo="'+tipo_el+'"]').forEach(function(item){
+                                        item.classList.remove('fa-star');
+                                        item.classList.add('fa-star-o');
+                                    });
+                                }else{
+                                    /*Lo ponemos-quitamos en modal y vista principal*/
+                                    document.querySelectorAll('[item="'+id_item+'"][tipo="'+tipo_el+'"]').forEach(function(item){
+                                        item.classList.remove('fa-check-square-o');
+                                        item.classList.add('fa-square-o');
+                                    });
+                                }
+                            }
+                            else{
+                                alert("Algo fallo intenta nuevamente");
+                            }
+                        }
+                    }
+                });
+
+            }
+        </script>
     </div>
 </body>
 </html>

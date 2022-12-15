@@ -2,7 +2,7 @@
     <div class="card my-3">
 
         @can('es_cliente_o_analista')
-            <i class="fa fa-trash-o bote_basura" tipo_elemento="item" id="{{$resultado['id']}}" aria-hidden="true"></i>
+            <i class="fa fa-trash-o bote_basura" tipo_elemento="item" id="{{$resultado['id']}}" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar"></i>
         @endcan
         <div class="card-body" >
 
@@ -30,14 +30,38 @@
             </small>
         </div>
         <div class="card-footer p-1 ps-3" style="font-size: 9px;">
-            Canal: <br>
-            @if($resultado['rss_channel'] != '')
-                <a class="w-100 text-black-50" href="{{$resultado['rss_channel']['channel_url']}}" target="_blank" style="white-space: normal; display: -webkit-box!important; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
-                    {{$resultado['rss_channel']['channel_title']}}
-                </a>
-            @else
-                Desconocido
-            @endif
+
+            <div class="detallesAdicionales d-flex align-items-center justify-content-between">
+                <div class="canal w-auto">
+                    Canal: <br>
+                    @if($resultado['rss_channel'] != '')
+                        <a class="w-100 text-black-50" href="{{$resultado['rss_channel']['channel_url']}}" target="_blank" style="white-space: normal; display: -webkit-box!important; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
+                            {{$resultado['rss_channel']['channel_title']}}
+                        </a>
+                    @else
+                        Desconocido
+                    @endif
+                </div>
+                <div class="acciones w-auto me-2">
+                    {{--Elementos que le gustaron al usuario o que ya marco como vistos--}}
+                    <i class="fa {{ in_array($resultado['id'], $itemsFeatured) ? 'fa-star':'fa-star-o' }} favoritoBoton"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       item="{{$resultado['id']}}"
+                       tipo="favorito"
+                       title="Favorito"
+                       aria-hidden="true"
+                       style="font-size: 25px; color: rgb(251,163,26);"></i>
+                    <i class="ms-2 fa {{ in_array($resultado['id'], $itemsLooked) ? 'fa-check-square-o':'fa-square-o' }} vistoBoton"
+                       aria-hidden="true"
+                       item="{{$resultado['id']}}"
+                       tipo="visto"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       title="Visto"
+                       style="font-size: 25px; color: rgb(11 106 242);"></i>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -159,7 +183,26 @@
                     </a>
                 <hr>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-between detallesAdicionales">
+                <div class="acciones w-auto me-2">
+                    {{--Elementos que le gustaron al usuario o que ya marco como vistos--}}
+                    <i class="fa {{ in_array($resultado['id'], $itemsFeatured) ? 'fa-star':'fa-star-o' }} favoritoBoton"
+                       data-bs-toggle="tooltip"
+                       item="{{$resultado['id']}}"
+                       tipo="favorito"
+                       data-bs-placement="top"
+                       title="Favorito"
+                       aria-hidden="true"
+                       style="font-size: 30px; color: rgb(251,163,26);"></i>
+                    <i class="ms-2 fa {{ in_array($resultado['id'], $itemsLooked) ? 'fa-check-square-o':'fa-square-o' }} vistoBoton"
+                       aria-hidden="true"
+                       item="{{$resultado['id']}}"
+                       tipo="visto"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       title="Visto"
+                       style="font-size: 30px; color: rgb(11 106 242);"></i>
+                </div>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
